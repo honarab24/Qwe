@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="" tvg-logo="https://img1.pnghut.com/25/24/21/CZB9D1qyfu/news-broadcasting-red-symbol-sphere-philippines.jpg" group-title="🇵🇭 PINOY", TV5
+#KODIPROP:inputstreamaddon=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=dash
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=c18b6aa739be4c0b774605fcfb5d6b68:e41c3a6f7532b2e3a828d9580124c89d
+https://webtvstream.bhtelecom.ba/hls6/arena1.mpd
