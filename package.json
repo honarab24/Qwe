@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "apt-get update && apt-get install -y ffmpeg"
   },
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.18.2"
   }
-}
-"scripts": {
-  "postinstall": "apt-get update && apt-get install -y ffmpeg"
 }
