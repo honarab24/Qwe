@@ -1,37 +1,62 @@
-const express = require("express");
-const cors = require("cors");
-const compression = require("compression");
-const { spawn } = require("child_process");
+import express from "express";
+import fetch from "node-fetch";
 
 const app = express();
-app.use(cors());
-app.use(compression());
 
-const PORT = process.env.PORT || 10000;
+app.get("/stream.m3u8", async (req, res) => {
+  try {
+    const targetUrl = "https://zekonew.newkso.ru/zeko/premium44/mono.m3u8";
 
-const MPD_URL = "https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/cgnl_nba.mpd";
-const KEY_ID = "c5e51f41ceac48709d0bdcd9c13a4d88";
-const KEY = "20b91609967e472c27040716ef6a8b9a";
+    const response = await fetch(targetUrl, {
+      headers: {
+        "Host": "zekonew.newkso.ru",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+        "Origin": "https://jxoplay.xyz",
+        "Referer": "https://jxoplay.xyz/",
+      }
+    });
 
-app.get("/live.m3u8", (req, res) => {
-  res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
+    if (!response.ok) {
+      return res.status(response.status).send("Failed to fetch stream");
+    }
 
-  const args = [
-    `input=${MPD_URL},stream=video,output=video.mp4`,
-    `input=${MPD_URL},stream=audio,output=audio.mp4`,
-    "--enable_raw_key_decryption",
-    `--keys`, `key_id=${KEY_ID}:key=${KEY}`,
-    "--hls_master_playlist_output", "pipe:1"
-  ];
+    // Pass headers for HLS
+    res.set("Content-Type", "application/vnd.apple.mpegurl");
+    res.send(await response.text());
 
-  const packager = spawn("shaka-packager", args);
-
-  packager.stdout.pipe(res);
-  packager.stderr.on("data", (d) => console.error(d.toString()));
-
-  req.on("close", () => packager.kill("SIGKILL"));
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Live at http://localhost:${PORT}/live.m3u8`);
+// For .ts segments proxy
+app.get("/segment.ts", async (req, res) => {
+  const segmentUrl = req.query.url;
+  if (!segmentUrl) return res.status(400).send("Missing url");
+
+  try {
+    const response = await fetch(segmentUrl, {
+      headers: {
+        "Host": "zekonew.newkso.ru",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0",
+        "Origin": "https://jxoplay.xyz",
+        "Referer": "https://jxoplay.xyz/",
+      }
+    });
+
+    if (!response.ok) {
+      return res.status(response.status).send("Failed to fetch segment");
+    }
+
+    res.set("Content-Type", "video/mp2t");
+    response.body.pipe(res);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 });
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
