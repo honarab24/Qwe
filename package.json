@@ -1,17 +1,13 @@
 {
-  "name": "clearkey-mpd-to-hls",
+  "name": "m3u8-restream",
   "version": "1.0.0",
-  "description": "Restream ClearKey DASH (.mpd) to HLS (.m3u8) with Shaka Packager",
   "main": "server.js",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  },
   "scripts": {
     "start": "node server.js"
-  },
-  "dependencies": {
-    "compression": "^1.7.4",
-    "cors": "^2.8.5",
-    "express": "^4.18.2"
-  },
-  "engines": {
-    "node": ">=18.x"
   }
 }
