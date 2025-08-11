@@ -1,7 +1,7 @@
 {
-  "name": "m3u-ott-navigator-proxy",
+  "name": "ott-m3u-extractor",
   "version": "1.0.0",
-  "description": "Proxy to fetch M3U with User-Agent 'OTT NAVIGATOR' + simple frontend to extract/display M3U",
+  "description": "OTT Navigator M3U Extractor",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -9,7 +9,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "got": "^12.6.0",
-    "helmet": "^7.0.0"
+    "node-fetch": "^2.6.9"
   }
 }
