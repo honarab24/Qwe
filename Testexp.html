@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>M3U Extractor (OTT Navigator UA)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body { background: #0a0f1e; color: #fff; font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #00aaff; }
+    input, button, textarea {
+        width: 100%; padding: 10px; margin: 10px 0;
+        border-radius: 5px; border: none; font-size: 14px;
+    }
+    button { background: #00aaff; color: #fff; cursor: pointer; }
+    textarea { height: 300px; background: #111; color: #0f0; }
+</style>
+</head>
+<body>
+<h1>OTT Navigator M3U Extractor</h1>
+<input type="text" id="url" placeholder="Enter M3U link..." />
+<button onclick="extractM3U()">Extract M3U</button>
+<textarea id="output" readonly></textarea>
+
+<script>
+async function extractM3U() {
+    const url = document.getElementById('url').value.trim();
+    if (!url) {
+        alert('Please enter a URL.');
+        return;
+    }
+
+    try {
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'User-Agent': 'OTT Navigator/1.7.3.1 (Linux;Android 13; 1jnb5cf)'
+            }
+        });
+        const text = await res.text();
+        document.getElementById('output').value = text;
+    } catch (err) {
+        document.getElementById('output').value = 'Error: ' + err;
+    }
+}
+</script>
+</body>
+</html>
