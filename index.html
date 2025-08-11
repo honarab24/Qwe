@@ -1,196 +1,258 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Extract M3U (OTT NAVIGATOR UA)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; padding: 18px; background:#0b1220; color:#e6eef8; }
-    .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; box-shadow: 0 6px 24px rgba(2,6,23,0.6); }
-    input, button { font-size: 14px; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); background:transparent; color: inherit; width:100%; box-sizing:border-box; }
-    label { font-size: 13px; opacity:0.9; display:block; margin-bottom:6px; }
-    .row { display:grid; grid-template-columns: 1fr 160px; gap:10px; margin-bottom:10px; }
-    .channels { margin-top:12px; display:grid; gap:8px; }
-    .chan { padding:8px; border-radius:8px; background: rgba(0,0,0,0.2); display:flex; gap:10px; align-items:center; }
-    .logo { width:48px; height:32px; object-fit:contain; background:#071022; border-radius:4px; padding:4px; }
-    .meta { font-size:13px; }
-    .small { font-size:12px; opacity:0.85; }
-    .controls { display:flex; gap:8px; margin-top:10px; }
-    .danger { background:#7b1724; color:#fff; border: none; padding:8px 12px; border-radius:8px; cursor:pointer; }
-    .primary { background:#0aa3ff; color:#04202a; border: none; padding:8px 12px; border-radius:8px; cursor:pointer; }
-    pre { white-space:pre-wrap; word-break:break-word; background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; font-size:12px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>OTT Navigator — M3U Extractor (HTML only)</title>
+<style>
+  :root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
+  body{background:#071022;color:#e6eef8;margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .card{width:960px;max-width:96%;background:#07162a;padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+  h1{margin:0 0 6px 0;font-size:20px}
+  p{margin:0 0 14px 0;color:#b7d0ea;font-size:13px}
+  label{font-size:13px;color:#9fbad8}
+  input,select,textarea,button{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:#021126;color:inherit}
+  textarea{min-height:180px;font-family:monospace;resize:vertical;white-space:pre-wrap}
+  .row{display:flex;gap:10px;margin-top:10px}
+  .row > *{flex:1}
+  .btn{cursor:pointer;border:none;padding:10px 12px;border-radius:8px;background:#0aa6ff;color:#022031;font-weight:700}
+  .btn-alt{background:#2b6bff;color:#fff}
+  .small{font-size:12px;color:#9fbad8;margin-top:8px}
+  .result{margin-top:14px}
+  .item{background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;margin-bottom:8px;word-break:break-all;display:flex;gap:8px;align-items:center}
+  .item .url{flex:1}
+  .copy{padding:6px 8px;border-radius:6px;border:none;cursor:pointer;background:#0aa6ff}
+  .hint{font-size:12px;color:#9fbad8;margin-top:10px}
+  .danger{color:#ffb4b4}
+</style>
 </head>
 <body>
-  <div class="card" style="max-width:900px;margin:18px auto;">
-    <h2 style="margin:0 0 8px 0;">Extract M3U — <span class="small">User-Agent: <strong>OTT NAVIGATOR</strong> (server side)</span></h2>
+  <div class="card">
+    <h1>OTT Navigator — M3U / M3U8 Extractor</h1>
+    <p>HTML-only tool. Paste page source or use a proxy (see notes). Extracts `.m3u`, `.m3u8`, xtream links (`player.php`, `get.php`), common playlist endpoints and tokened URLs.</p>
 
-    <label for="proxyBase">Proxy base URL (your server) — e.g. <code>http://localhost:3000</code></label>
-    <input id="proxyBase" value="http://localhost:3000" />
+    <label>Mode</label>
+    <select id="mode">
+      <option value="paste">Paste page HTML / upload (works without proxy)</option>
+      <option value="fetch">Fetch remote URL via proxy (requires proxy that sets OTT-UA)</option>
+    </select>
 
-    <div class="row">
-      <div>
-        <label for="playlistUrl">Remote playlist URL (M3U)</label>
-        <input id="playlistUrl" placeholder="https://example.com/playlist.m3u" />
-      </div>
-      <div>
-        <label for="proxyKey">Proxy key (PROXY_KEY)</label>
-        <input id="proxyKey" placeholder="your-proxy-key" />
+    <div id="pasteBlock" style="margin-top:10px;">
+      <label>Paste page HTML (recommended if urgent)</label>
+      <textarea id="source" placeholder="Paste the full page HTML / JS here..."></textarea>
+      <div class="row">
+        <button id="uploadBtn" class="btn-alt">Upload .html file</button>
+        <input id="fileInput" type="file" accept=".html,.htm,text/*" style="display:none"/>
+        <button id="extractFromPaste" class="btn">Extract from pasted source</button>
       </div>
     </div>
 
-    <div style="display:flex;gap:8px;">
-      <button id="btnFetch" class="primary">Fetch & Extract</button>
-      <button id="btnClear" class="danger">Clear</button>
-    </div>
-
-    <div id="status" class="small" style="margin-top:10px;opacity:0.9;"></div>
-
-    <div id="resultArea" style="display:none;">
-      <h3 style="margin-top:12px">Channels</h3>
-      <div id="channels" class="channels"></div>
-
-      <div style="margin-top:12px;">
-        <button id="btnDownload" class="primary">Download extracted M3U</button>
-        <button id="btnViewRaw" class="primary" style="background:transparent;border:1px solid rgba(255,255,255,0.06);margin-left:8px;">View raw</button>
+    <div id="fetchBlock" style="display:none;margin-top:12px;">
+      <label>Proxy endpoint (must accept GET?url=TARGET and set OTT Navigator User-Agent)</label>
+      <input id="proxyUrl" placeholder="e.g. https://your-proxy.example/fetch?url=" />
+      <label style="margin-top:8px">Target page URL</label>
+      <input id="targetUrl" placeholder="https://example.com/page-with-playlist" />
+      <div class="row">
+        <button id="fetchBtn" class="btn">Fetch via proxy & extract</button>
+        <button id="exampleProxy" class="btn-alt">Example proxy command</button>
       </div>
-
-      <h4 style="margin-top:12px">Raw playlist</h4>
-      <pre id="rawContent" style="max-height:300px;overflow:auto;"></pre>
+      <div id="proxyNote" class="small">
+        Note: Browsers block setting User-Agent in JS — your proxy must set header:
+        <code>User-Agent: OTT Navigator/3.0 (Android)</code>
+      </div>
     </div>
+
+    <div id="status" class="small" style="margin-top:12px">Status: ready</div>
+
+    <div class="result" id="results"></div>
+
+    <div class="hint">
+      Quick tips:
+      <ol style="padding-left:18px;margin:6px 0 0 0">
+        <li>Open the target page in your browser, right-click → View page source, copy & paste into the box — instant extraction.</li>
+        <li>Or run a tiny proxy (Node/Express) that fetches the page with <code>User-Agent: OTT Navigator/3.0 (Android)</code> and returns the HTML. Then point Proxy endpoint to it.</li>
+      </ol>
+    </div>
+
+    <div style="height:8px"></div>
+    <div class="small danger">Remember: use only on pages you have permission to access. Do not bypass protections you are not authorized to bypass.</div>
   </div>
 
 <script>
-async function fetchM3U(proxyBase, playlistUrl, key) {
-  const encoded = encodeURIComponent(playlistUrl);
-  const url = `${proxyBase.replace(/\/$/, '')}/fetch-m3u?url=${encoded}&key=${encodeURIComponent(key)}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('fetch failed: ' + res.status + ' ' + res.statusText);
-  const text = await res.text();
-  return text;
-}
+/* ---------- Extraction logic (pure client-side) ---------- */
 
-function parseM3U(raw) {
-  // Basic parser: split into segments by lines that start with #EXTINF
-  const lines = raw.split(/\r?\n/);
-  const entries = [];
-  let current = null;
-  for (let i=0;i<lines.length;i++){
-    const line = lines[i].trim();
-    if (!line) continue;
-    if (line.startsWith('#EXTINF')) {
-      // start new entry
-      const info = line.substring(8).trim(); // after '#EXTINF:'
-      // extract name after last comma
-      const lastComma = info.lastIndexOf(',');
-      const name = lastComma >= 0 ? info.substring(lastComma + 1).trim() : info;
-      // Try to extract tvg-logo or tvg-id from the params
-      const tvgLogoMatch = info.match(/tvg-logo="([^"]+)"/i) || info.match(/tvg-logo=([^,\s]+)/i);
-      const logo = tvgLogoMatch ? tvgLogoMatch[1] : '';
-      current = { infoLine: line, name: name || 'unknown', logo, attrs: info, url: '' };
-      entries.push(current);
-    } else if (line.startsWith('#')) {
-      // other comment - skip
-    } else {
-      // stream url line
-      if (current) {
-        current.url = line;
-        current = null;
-      } else {
-        // orphan url: could be top-level stream without EXTINF
-        entries.push({ infoLine:'', name: line, logo:'', attrs:'', url: line });
-      }
-    }
+const mode = document.getElementById('mode');
+const pasteBlock = document.getElementById('pasteBlock');
+const fetchBlock = document.getElementById('fetchBlock');
+const sourceEl = document.getElementById('source');
+const extractFromPaste = document.getElementById('extractFromPaste');
+const resultsEl = document.getElementById('results');
+const statusEl = document.getElementById('status');
+const uploadBtn = document.getElementById('uploadBtn');
+const fileInput = document.getElementById('fileInput');
+const proxyUrlEl = document.getElementById('proxyUrl');
+const targetUrlEl = document.getElementById('targetUrl');
+const fetchBtn = document.getElementById('fetchBtn');
+const exampleProxy = document.getElementById('exampleProxy');
+
+mode.addEventListener('change', () => {
+  if (mode.value === 'paste') {
+    pasteBlock.style.display = '';
+    fetchBlock.style.display = 'none';
+  } else {
+    pasteBlock.style.display = 'none';
+    fetchBlock.style.display = '';
   }
-  return entries;
-}
+});
 
-function makeM3UFromEntries(entries) {
-  const lines = ['#EXTM3U'];
-  for (const e of entries) {
-    if (e.infoLine && e.infoLine.startsWith('#EXTINF')) {
-      lines.push(e.infoLine);
-    } else {
-      // write a basic EXTINF line
-      lines.push(`#EXTINF:-1,${e.name}`);
-    }
-    lines.push(e.url || '');
-  }
-  return lines.join('\\n');
-}
-
-document.getElementById('btnFetch').addEventListener('click', async () => {
-  const proxyBase = document.getElementById('proxyBase').value.trim();
-  const playlistUrl = document.getElementById('playlistUrl').value.trim();
-  const proxyKey = document.getElementById('proxyKey').value.trim();
-  const status = document.getElementById('status');
-  status.textContent = 'Fetching...';
-  document.getElementById('resultArea').style.display = 'none';
+/* file upload */
+uploadBtn.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', async (e) => {
+  const f = e.target.files && e.target.files[0];
+  if (!f) return;
+  status('Reading file...');
   try {
-    if (!proxyBase || !playlistUrl || !proxyKey) throw new Error('Please provide proxy base URL, playlist URL, and proxy key.');
-    const raw = await fetchM3U(proxyBase, playlistUrl, proxyKey);
-    document.getElementById('rawContent').textContent = raw;
-    const entries = parseM3U(raw);
-    const channelsDiv = document.getElementById('channels');
-    channelsDiv.innerHTML = '';
-    if (entries.length === 0) {
-      channelsDiv.innerHTML = '<div class="small">No channels found (bad/malformed M3U?)</div>';
-    } else {
-      for (const e of entries) {
-        const el = document.createElement('div');
-        el.className = 'chan';
-        const img = document.createElement('img');
-        img.className = 'logo';
-        img.alt = '';
-        img.src = e.logo || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2232%22><rect width=%2248%22 height=%2232%22 fill=%22%230b1220%22/></svg>';
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-        meta.innerHTML = `<div><strong>${escapeHtml(e.name)}</strong></div><div class="small">${escapeHtml(e.url)}</div>`;
-        el.appendChild(img);
-        el.appendChild(meta);
-        channelsDiv.appendChild(el);
-      }
-    }
-
-    // prepare extracted m3u download
-    const cleaned = makeM3UFromEntries(entries);
-    const blob = new Blob([cleaned], { type: 'text/plain;charset=utf-8' });
-    const downloadUrl = URL.createObjectURL(blob);
-    const btnDownload = document.getElementById('btnDownload');
-    btnDownload.onclick = () => {
-      const a = document.createElement('a');
-      a.href = downloadUrl;
-      a.download = 'extracted_playlist.m3u';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    };
-
-    document.getElementById('btnViewRaw').onclick = () => {
-      const w = window.open('', '_blank');
-      w.document.write('<pre>' + escapeHtml(raw) + '</pre>');
-      w.document.title = 'Raw M3U';
-    };
-
-    document.getElementById('resultArea').style.display = 'block';
-    status.textContent = `Fetched and parsed ${entries.length} entries.`;
+    const txt = await f.text();
+    sourceEl.value = txt;
+    status('File loaded. Click "Extract from pasted source".');
   } catch (err) {
-    status.textContent = 'Error: ' + (err.message || err);
-    console.error(err);
+    status('Failed to read file: ' + err.message);
   }
 });
 
-document.getElementById('btnClear').addEventListener('click', () => {
-  document.getElementById('playlistUrl').value = '';
-  document.getElementById('rawContent').textContent = '';
-  document.getElementById('channels').innerHTML = '';
-  document.getElementById('resultArea').style.display = 'none';
-  document.getElementById('status').textContent = '';
+/* extraction function */
+function extractPlaylistLinks(pageText) {
+  // regexes
+  const set = new Set();
+
+  // direct playlist files
+  const fileRegex = /https?:\/\/[^\s"'<>]+?\.(m3u8|m3u|txt|json)(?:\?[^\s"'<>]*)?/gi;
+  let m;
+  while ((m = fileRegex.exec(pageText)) !== null) set.add(m[0]);
+
+  // xtream / php endpoints (may be relative)
+  const xtreamRegex = /(?:https?:\/\/[^\s"'<>]+)?(?:player\.php\?username=[^"'&\s]+&password=[^"'&\s]+|get\.php\?username=[^"'&\s]+&password=[^"'&\s]+|\/playlist\.m3u8(?:\?[^\s"'<>]*)?)/gi;
+  while ((m = xtreamRegex.exec(pageText)) !== null) {
+    // if relative (starts with /) try to extract the path only; we'll show as-is
+    set.add(m[0]);
+  }
+
+  // tokened or index_*.m3u8 fragments or playlist.m3u8
+  const tokenRegex = /https?:\/\/[^\s"'<>]+?(?:index_[0-9a-zA-Z_]+\.m3u8|playlist\.m3u8|seg-[0-9]+\.ts)(?:\?[^\s"'<>]*)?/gi;
+  while ((m = tokenRegex.exec(pageText)) !== null) set.add(m[0]);
+
+  // generic http(s) urls that include keywords
+  const generic = /https?:\/\/[^\s"'<>]+/gi;
+  while ((m = generic.exec(pageText)) !== null) {
+    const s = m[0];
+    if (/(playlist|m3u|m3u8|get\.php|player\.php|token=|xtream|index_)/i.test(s)) set.add(s);
+  }
+
+  // also look for simple xtream credentials in the raw text (username/password pairs)
+  const creds = /(username=([^&\s'"]+).*?password=([^&\s'"]+))/gi;
+  while ((m = creds.exec(pageText)) !== null) {
+    // not a full URL, add as text so user can reconstruct if needed
+    set.add(m[1]);
+  }
+
+  return Array.from(set);
+}
+
+/* show results */
+function showResults(list) {
+  resultsEl.innerHTML = '';
+  if (!list || list.length === 0) {
+    resultsEl.innerHTML = '<div class="small">No playlist links found.</div>';
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  list.forEach(u => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    const span = document.createElement('div');
+    span.className = 'url';
+    span.textContent = u;
+    const copy = document.createElement('button');
+    copy.className = 'copy';
+    copy.textContent = 'Copy';
+    copy.addEventListener('click', () => {
+      navigator.clipboard.writeText(u).then(()=>status('Copied!'), ()=>status('Copy failed'));
+    });
+    div.appendChild(span);
+    div.appendChild(copy);
+    frag.appendChild(div);
+  });
+  resultsEl.appendChild(frag);
+}
+
+/* status helper */
+function status(s){ statusEl.textContent = 'Status: ' + s; }
+
+/* extract from pasted source */
+extractFromPaste.addEventListener('click', () => {
+  const txt = sourceEl.value || '';
+  if (!txt) { status('Paste page source first.'); return; }
+  status('Extracting...');
+  try {
+    const found = extractPlaylistLinks(txt);
+    status(`Found ${found.length} item(s).`);
+    showResults(found);
+  } catch (err) {
+    status('Extraction failed: ' + (err.message||err));
+  }
 });
 
-function escapeHtml(s) {
-  return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-}
+/* fetch via proxy
+   NOTE: browsers disallow setting User-Agent in fetch; proxy must set UA itself.
+   Proxy endpoint is expected to accept: GET ?url=<encoded target page URL>
+   and return the raw HTML (Content-Type: text/html)
+*/
+fetchBtn.addEventListener('click', async () => {
+  const proxy = (document.getElementById('proxyUrl').value || '').trim();
+  const target = (document.getElementById('targetUrl').value || '').trim();
+  if (!proxy || !target) { status('Provide proxy endpoint and target URL.'); return; }
+  // form request URL (proxy + encoded target)
+  const fetchUrl = proxy + encodeURIComponent(target);
+  status('Fetching via proxy...');
+  try {
+    const r = await fetch(fetchUrl, { method: 'GET' });
+    if (!r.ok) { status('Proxy fetch failed: ' + r.status + ' ' + r.statusText); return; }
+    const text = await r.text();
+    status('Fetched. Extracting...');
+    const found = extractPlaylistLinks(text);
+    status(`Found ${found.length} item(s).`);
+    showResults(found);
+  } catch (err) {
+    status('Fetch error: ' + (err.message || err));
+  }
+});
+
+/* example proxy command button shows a quick Node example text */
+exampleProxy.addEventListener('click', () => {
+  alert(
+`Example minimal Node/Express proxy (runs on your server). It MUST set User-Agent:
+----
+const express = require('express');
+const got = require('got');
+const app = express();
+app.get('/fetch', async (req,res)=>{
+  const url = req.query.url;
+  if(!url) return res.status(400).send('no url');
+  const OTT_UA = 'OTT Navigator/3.0 (Android)';
+  try{
+    const html = await got(url, { headers: {'user-agent': OTT_UA}, timeout:15000 }).text();
+    res.type('text/html').send(html);
+  }catch(e){ res.status(500).send('fetch error'); }
+});
+app.listen(3000);
+----
+Then point Proxy endpoint field to: https://yourserver/fetch?url=`);
+});
+
+/* optional: allow pressing Ctrl+Enter in paste to extract */
+sourceEl.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'Enter') extractFromPaste.click();
+});
 </script>
 </body>
 </html>
