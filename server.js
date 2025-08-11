@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Random User-Agent
+// Random User-Agent rotation
 function getRandomUserAgent() {
   const userAgents = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -17,12 +17,12 @@ function getRandomUserAgent() {
   return userAgents[Math.floor(Math.random() * userAgents.length)];
 }
 
-// Retry fetch
+// Retry fetch with exponential backoff
 async function fetchWithRetry(url, options, retries = 3) {
   let lastError;
   for (let i = 0; i < retries; i++) {
     try {
-      if (i > 0) await new Promise(r => setTimeout(r, 1000 * (i + 1)));
+      if (i > 0) await new Promise(r => setTimeout(r, 1000 * i));
       const res = await fetch(url, options);
       if (res.status === 429 || (res.status >= 500 && res.status < 600)) {
         lastError = new Error(`Server responded with ${res.status}`);
@@ -34,47 +34,13 @@ async function fetchWithRetry(url, options, retries = 3) {
       if (i === retries - 1) break;
     }
   }
-  throw lastError || new Error('Max retries exceeded');
+  throw lastError || new Error("Max retries exceeded");
 }
 
-// Handle requests
-app.get("/:videoId/:type?", async (req, res) => {
+// Master playlist & segment route
+app.get("/:videoId/master.m3u8", async (req, res) => {
   try {
-    const { videoId, type } = req.params;
-
-    // Handle segment requests
-    if (type === "seg") {
-      const segmentUrl = decodeURIComponent(req.url.split("/seg/")[1]);
-      const headers = {
-        "User-Agent": getRandomUserAgent(),
-        "Referer": "https://www.youtube.com/",
-        "Origin": "https://www.youtube.com",
-        "Accept": "*/*",
-        "Accept-Language": "en-US,en;q=0.9"
-      };
-
-      if (segmentUrl.endsWith(".m3u8")) {
-        const r = await fetchWithRetry(segmentUrl, { headers });
-        const playlist = await r.text();
-        const baseUrl = new URL(segmentUrl).origin + new URL(segmentUrl).pathname.replace(/[^/]+$/, "");
-        const workerBase = `${req.protocol}://${req.get("host")}/${videoId}/seg/`;
-        const rewrittenPlaylist = playlist.replace(/^(?!#)([^\s]+)$/gm, m => {
-          try {
-            const abs = m.startsWith("http") ? m : new URL(m, baseUrl).href;
-            return workerBase + encodeURIComponent(abs);
-          } catch {
-            return m;
-          }
-        });
-        res.set("Content-Type", "application/vnd.apple.mpegurl");
-        return res.send(rewrittenPlaylist);
-      }
-
-      const segRes = await fetchWithRetry(segmentUrl, { headers });
-      res.set("Access-Control-Allow-Origin", "*");
-      segRes.body.pipe(res);
-      return;
-    }
+    const { videoId } = req.params;
 
     // Fetch YouTube page
     const ytPage = await fetchWithRetry(`https://www.youtube.com/watch?v=${videoId}`, {
@@ -82,12 +48,13 @@ app.get("/:videoId/:type?", async (req, res) => {
     });
     const ytPageText = await ytPage.text();
 
-    // Extract manifest
+    // Extract HLS manifest
     let manifestUrl = null;
     const patterns = [
       /"hlsManifestUrl":"(https:[^"]+\.m3u8)"/,
       /"url":"(https:\/\/[^"]+\/manifest\/hls_[^"]+\/playlist\.m3u8)"/,
-      /"hlsManifestUrl":\s*"([^"]+\.m3u8)"/
+      /"hlsManifestUrl":\s*"([^"]+\.m3u8)"/,
+      /"streamingData":\s*{.*?"hlsManifestUrl":\s*"(https:[^"]+\.m3u8)"/
     ];
     for (const p of patterns) {
       const match = ytPageText.match(p);
@@ -105,22 +72,66 @@ app.get("/:videoId/:type?", async (req, res) => {
     const masterRes = await fetchWithRetry(manifestUrl, {
       headers: {
         "User-Agent": getRandomUserAgent(),
-        "Referer": "https://www.youtube.com/"
+        "Referer": "https://www.youtube.com/",
+        "Accept": "*/*"
       }
     });
     const masterPlaylist = await masterRes.text();
 
-    // Rewrite URLs
-    const workerBase = `${req.protocol}://${req.get("host")}/${videoId}/seg/`;
-    const rewrittenPlaylist = masterPlaylist.replace(/(https?:\/\/[^\s"]+)/g, m => workerBase + encodeURIComponent(m));
+    // Rewrite URLs to use /seg/ proxy
+    const base = `${req.protocol}://${req.get("host")}/${videoId}/seg/`;
+    const rewritten = masterPlaylist.replace(/(https?:\/\/[^\s"]+)/g, m => base + encodeURIComponent(m));
 
-    res.set("Content-Type", "application/vnd.apple.mpegurl");
-    res.send(rewrittenPlaylist);
+    res.set({
+      "Content-Type": "application/vnd.apple.mpegurl",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Access-Control-Allow-Origin": "*"
+    });
+    res.send(rewritten);
+
+  } catch (err) {
+    res.status(500).send(`Error: ${err.message}`);
+  }
+});
+
+// Segment handler
+app.get("/:videoId/seg/*", async (req, res) => {
+  try {
+    const segmentUrl = decodeURIComponent(req.params[0]);
+    const headers = {
+      "User-Agent": getRandomUserAgent(),
+      "Referer": "https://www.youtube.com/",
+      "Origin": "https://www.youtube.com",
+      "Accept": "*/*"
+    };
+
+    if (segmentUrl.endsWith(".m3u8")) {
+      const r = await fetchWithRetry(segmentUrl, { headers });
+      const playlist = await r.text();
+      const baseUrl = new URL(segmentUrl).origin + new URL(segmentUrl).pathname.replace(/[^/]+$/, "");
+      const proxyBase = `${req.protocol}://${req.get("host")}/${req.params.videoId}/seg/`;
+      const rewrittenPlaylist = playlist.replace(/^(?!#)([^\s]+)$/gm, m => {
+        try {
+          const abs = m.startsWith("http") ? m : new URL(m, baseUrl).href;
+          return proxyBase + encodeURIComponent(abs);
+        } catch {
+          return m;
+        }
+      });
+      res.set("Content-Type", "application/vnd.apple.mpegurl");
+      return res.send(rewrittenPlaylist);
+    }
+
+    const segRes = await fetchWithRetry(segmentUrl, { headers });
+    res.set("Access-Control-Allow-Origin", "*");
+    segRes.body.pipe(res);
+
   } catch (err) {
     res.status(500).send(`Error: ${err.message}`);
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
