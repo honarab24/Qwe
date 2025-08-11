@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Extract M3U (OTT NAVIGATOR UA)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; padding: 18px; background:#0b1220; color:#e6eef8; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; box-shadow: 0 6px 24px rgba(2,6,23,0.6); }
+    input, button { font-size: 14px; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); background:transparent; color: inherit; width:100%; box-sizing:border-box; }
+    label { font-size: 13px; opacity:0.9; display:block; margin-bottom:6px; }
+    .row { display:grid; grid-template-columns: 1fr 160px; gap:10px; margin-bottom:10px; }
+    .channels { margin-top:12px; display:grid; gap:8px; }
+    .chan { padding:8px; border-radius:8px; background: rgba(0,0,0,0.2); display:flex; gap:10px; align-items:center; }
+    .logo { width:48px; height:32px; object-fit:contain; background:#071022; border-radius:4px; padding:4px; }
+    .meta { font-size:13px; }
+    .small { font-size:12px; opacity:0.85; }
+    .controls { display:flex; gap:8px; margin-top:10px; }
+    .danger { background:#7b1724; color:#fff; border: none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+    .primary { background:#0aa3ff; color:#04202a; border: none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+    pre { white-space:pre-wrap; word-break:break-word; background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; font-size:12px; }
+  </style>
+</head>
+<body>
+  <div class="card" style="max-width:900px;margin:18px auto;">
+    <h2 style="margin:0 0 8px 0;">Extract M3U — <span class="small">User-Agent: <strong>OTT NAVIGATOR</strong> (server side)</span></h2>
+
+    <label for="proxyBase">Proxy base URL (your server) — e.g. <code>http://localhost:3000</code></label>
+    <input id="proxyBase" value="http://localhost:3000" />
+
+    <div class="row">
+      <div>
+        <label for="playlistUrl">Remote playlist URL (M3U)</label>
+        <input id="playlistUrl" placeholder="https://example.com/playlist.m3u" />
+      </div>
+      <div>
+        <label for="proxyKey">Proxy key (PROXY_KEY)</label>
+        <input id="proxyKey" placeholder="your-proxy-key" />
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;">
+      <button id="btnFetch" class="primary">Fetch & Extract</button>
+      <button id="btnClear" class="danger">Clear</button>
+    </div>
+
+    <div id="status" class="small" style="margin-top:10px;opacity:0.9;"></div>
+
+    <div id="resultArea" style="display:none;">
+      <h3 style="margin-top:12px">Channels</h3>
+      <div id="channels" class="channels"></div>
+
+      <div style="margin-top:12px;">
+        <button id="btnDownload" class="primary">Download extracted M3U</button>
+        <button id="btnViewRaw" class="primary" style="background:transparent;border:1px solid rgba(255,255,255,0.06);margin-left:8px;">View raw</button>
+      </div>
+
+      <h4 style="margin-top:12px">Raw playlist</h4>
+      <pre id="rawContent" style="max-height:300px;overflow:auto;"></pre>
+    </div>
+  </div>
+
+<script>
+async function fetchM3U(proxyBase, playlistUrl, key) {
+  const encoded = encodeURIComponent(playlistUrl);
+  const url = `${proxyBase.replace(/\/$/, '')}/fetch-m3u?url=${encoded}&key=${encodeURIComponent(key)}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('fetch failed: ' + res.status + ' ' + res.statusText);
+  const text = await res.text();
+  return text;
+}
+
+function parseM3U(raw) {
+  // Basic parser: split into segments by lines that start with #EXTINF
+  const lines = raw.split(/\r?\n/);
+  const entries = [];
+  let current = null;
+  for (let i=0;i<lines.length;i++){
+    const line = lines[i].trim();
+    if (!line) continue;
+    if (line.startsWith('#EXTINF')) {
+      // start new entry
+      const info = line.substring(8).trim(); // after '#EXTINF:'
+      // extract name after last comma
+      const lastComma = info.lastIndexOf(',');
+      const name = lastComma >= 0 ? info.substring(lastComma + 1).trim() : info;
+      // Try to extract tvg-logo or tvg-id from the params
+      const tvgLogoMatch = info.match(/tvg-logo="([^"]+)"/i) || info.match(/tvg-logo=([^,\s]+)/i);
+      const logo = tvgLogoMatch ? tvgLogoMatch[1] : '';
+      current = { infoLine: line, name: name || 'unknown', logo, attrs: info, url: '' };
+      entries.push(current);
+    } else if (line.startsWith('#')) {
+      // other comment - skip
+    } else {
+      // stream url line
+      if (current) {
+        current.url = line;
+        current = null;
+      } else {
+        // orphan url: could be top-level stream without EXTINF
+        entries.push({ infoLine:'', name: line, logo:'', attrs:'', url: line });
+      }
+    }
+  }
+  return entries;
+}
+
+function makeM3UFromEntries(entries) {
+  const lines = ['#EXTM3U'];
+  for (const e of entries) {
+    if (e.infoLine && e.infoLine.startsWith('#EXTINF')) {
+      lines.push(e.infoLine);
+    } else {
+      // write a basic EXTINF line
+      lines.push(`#EXTINF:-1,${e.name}`);
+    }
+    lines.push(e.url || '');
+  }
+  return lines.join('\\n');
+}
+
+document.getElementById('btnFetch').addEventListener('click', async () => {
+  const proxyBase = document.getElementById('proxyBase').value.trim();
+  const playlistUrl = document.getElementById('playlistUrl').value.trim();
+  const proxyKey = document.getElementById('proxyKey').value.trim();
+  const status = document.getElementById('status');
+  status.textContent = 'Fetching...';
+  document.getElementById('resultArea').style.display = 'none';
+  try {
+    if (!proxyBase || !playlistUrl || !proxyKey) throw new Error('Please provide proxy base URL, playlist URL, and proxy key.');
+    const raw = await fetchM3U(proxyBase, playlistUrl, proxyKey);
+    document.getElementById('rawContent').textContent = raw;
+    const entries = parseM3U(raw);
+    const channelsDiv = document.getElementById('channels');
+    channelsDiv.innerHTML = '';
+    if (entries.length === 0) {
+      channelsDiv.innerHTML = '<div class="small">No channels found (bad/malformed M3U?)</div>';
+    } else {
+      for (const e of entries) {
+        const el = document.createElement('div');
+        el.className = 'chan';
+        const img = document.createElement('img');
+        img.className = 'logo';
+        img.alt = '';
+        img.src = e.logo || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2232%22><rect width=%2248%22 height=%2232%22 fill=%22%230b1220%22/></svg>';
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        meta.innerHTML = `<div><strong>${escapeHtml(e.name)}</strong></div><div class="small">${escapeHtml(e.url)}</div>`;
+        el.appendChild(img);
+        el.appendChild(meta);
+        channelsDiv.appendChild(el);
+      }
+    }
+
+    // prepare extracted m3u download
+    const cleaned = makeM3UFromEntries(entries);
+    const blob = new Blob([cleaned], { type: 'text/plain;charset=utf-8' });
+    const downloadUrl = URL.createObjectURL(blob);
+    const btnDownload = document.getElementById('btnDownload');
+    btnDownload.onclick = () => {
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = 'extracted_playlist.m3u';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    };
+
+    document.getElementById('btnViewRaw').onclick = () => {
+      const w = window.open('', '_blank');
+      w.document.write('<pre>' + escapeHtml(raw) + '</pre>');
+      w.document.title = 'Raw M3U';
+    };
+
+    document.getElementById('resultArea').style.display = 'block';
+    status.textContent = `Fetched and parsed ${entries.length} entries.`;
+  } catch (err) {
+    status.textContent = 'Error: ' + (err.message || err);
+    console.error(err);
+  }
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  document.getElementById('playlistUrl').value = '';
+  document.getElementById('rawContent').textContent = '';
+  document.getElementById('channels').innerHTML = '';
+  document.getElementById('resultArea').style.display = 'none';
+  document.getElementById('status').textContent = '';
+});
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+</script>
+</body>
+</html>
