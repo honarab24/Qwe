@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const compression = require("compression");
 const { spawn } = require("child_process");
-const path = require("path");
 
 const app = express();
 app.use(cors());
@@ -34,5 +33,5 @@ app.get("/live.m3u8", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 HLS ready at http://localhost:${PORT}/live.m3u8`);
+  console.log(`🚀 Live at http://localhost:${PORT}/live.m3u8`);
 });
