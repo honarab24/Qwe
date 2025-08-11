@@ -1,51 +1,54 @@
 const express = require('express');
-const { spawn } = require('child_process');
 const cors = require('cors');
+const compression = require('compression');
+const { spawn } = require('child_process');
 
 const app = express();
 app.use(cors());
+app.use(compression());
 
 const PORT = process.env.PORT || 10000;
 
-// DASH + ClearKey info
+// DASH + ClearKey
 const MPD_URL = "https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/cgnl_nba.mpd";
 const CLEARKEY = "c5e51f41ceac48709d0bdcd9c13a4d88:20b91609967e472c27040716ef6a8b9a";
 
-// Live HLS output endpoint
+// Live HLS stream
 app.get('/live.m3u8', (req, res) => {
   res.setHeader('Content-Type', 'application/vnd.apple.mpegurl');
 
-  const ffmpegArgs = [
+  const args = [
     '-hide_banner',
     '-loglevel', 'error',
 
-    // Retry/reconnect settings
+    // Reconnect if source drops
     '-reconnect', '1',
     '-reconnect_streamed', '1',
     '-reconnect_delay_max', '2',
 
-    // Input & key
+    // Input with ClearKey
     '-decryption_key', CLEARKEY,
     '-i', MPD_URL,
 
-    // Fast start settings
+    // Faster start
     '-fflags', '+genpts+discardcorrupt',
     '-analyzeduration', '100000',
     '-probesize', '1000000',
 
-    // Copy streams without re-encoding
+    // No re-encode (fast, low CPU)
     '-c', 'copy',
 
-    // HLS output tweaks
+    // HLS live config
     '-f', 'hls',
     '-hls_time', '3',
     '-hls_list_size', '5',
     '-hls_flags', 'delete_segments+program_date_time',
 
+    // Output to stdout
     'pipe:1'
   ];
 
-  const ffmpeg = spawn('ffmpeg', ffmpegArgs);
+  const ffmpeg = spawn('ffmpeg', args);
 
   ffmpeg.stdout.pipe(res);
 
@@ -59,5 +62,5 @@ app.get('/live.m3u8', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}/live.m3u8`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
