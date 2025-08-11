@@ -11,3 +11,6 @@
     "express": "^4.18.2"
   }
 }
+"scripts": {
+  "postinstall": "apt-get update && apt-get install -y ffmpeg"
+}
