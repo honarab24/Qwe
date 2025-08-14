@@ -13,7 +13,7 @@ const CUSTOM_HEADERS = {
   "User-Agent":
     "Mozilla/5.0 (X11; Linux x86_64; rv:134.0) Gecko/20220104 Firefox/134.0",
   Origin: "https://ppvs.su",
-  Referer: "https://ppvs.su",
+  Referer: "https://ppvs.su/",
   Connection: "keep-alive",
 };
 
