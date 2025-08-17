@@ -16,4 +16,8 @@ https://uselector.cdn.intigral-ott.net/STM/STM.isml/manifest.mpd
 https://cdn-uw2-prod.tsv2.amagi.tv/beacon?rp=https%3A%2F%2Fcdn-uw2-prod.tsv2.amagi.tv%2Flinear%2Famg01006-abs-cbn-abscbn-gma-x7-dash-abscbnono%2F7c693236-e0c1-40a3-8bd0-bb25e43f5bfc%2Findex.mpd
 
 #EXTINF:-1 tvg-id="" tvg-logo="https://img1.pnghut.com/25/24/21/CZB9D1qyfu/news-broadcasting-red-symbol-sphere-philippines.jpg" group-title="🇵🇭 PINOY", test11
+#EXTM3U
+
+#EXTINF:-1 tvg-id="ch1" tvg-name="My Channel" tvg-logo="https://example.com/logo.png" group-title="Movies",My Channel
+#KODIPROP:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36
 https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01006-abs-cbn-abscbn-gma-x7-dash-abscbnono/7c693236-e0c1-40a3-8bd0-bb25e43f5bfc/index.mpd
