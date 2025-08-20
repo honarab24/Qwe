@@ -1,0 +1,94 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="gma7.ph" tvg-name="GMA 7" group-title="Philippines",GMA 7
+https://stream.honortv.a0001.net/gma7/manifest.m3u8
+
+#EXTINF:-1 tvg-id="cinemoph.ph" tvg-name="Cinemó" group-title="Philippines",Cinemó
+https://stream.honortv.a0001.net/cinemoph/manifest.m3u8
+
+#EXTINF:-1 tvg-id="kapamilyachannel.ph" tvg-name="Kapamilya Channel HD" group-title="Philippines",Kapamilya Channel HD
+https://stream.honortv.a0001.net/kapamilyachannelHD/manifest.m3u8
+
+#EXTINF:-1 tvg-id="gtv.ph" tvg-name="GTV" group-title="Philippines",GTV
+https://stream.honortv.a0001.net/gtv/manifest.m3u8
+
+#EXTINF:-1 tvg-id="cinemaone.ph" tvg-name="Cinema One" group-title="Philippines",Cinema One
+https://stream.honortv.a0001.net/cinemaoneph/manifest.m3u8
+
+#EXTINF:-1 tvg-id="alltv.ph" tvg-name="AllTV" group-title="Philippines",AllTV
+https://stream.honortv.a0001.net/alltv2/manifest.m3u8
+
+#EXTINF:-1 tvg-id="net25.ph" tvg-name="Net 25" group-title="Philippines",Net 25
+https://stream.honortv.a0001.net/net25/manifest.m3u8
+
+#EXTINF:-1 tvg-id="teleradyo.ph" tvg-name="TeleRadyo" group-title="Philippines",TeleRadyo
+https://stream.honortv.a0001.net/teleradyo/manifest.m3u8
+
+#EXTINF:-1 tvg-id="anchd.ph" tvg-name="ANC HD" group-title="Philippines",ANC HD
+https://stream.honortv.a0001.net/anchd/manifest.m3u8
+
+#EXTINF:-1 tvg-id="myx.ph" tvg-name="MYX Philippines" group-title="Philippines",MYX Philippines
+https://stream.honortv.a0001.net/myxphilippines/manifest.m3u8
+
+#EXTINF:-1 tvg-id="bilyonaryo.ph" tvg-name="Bilyonaryo TV" group-title="Philippines",Bilyonaryo TV
+https://stream.honortv.a0001.net/bilyonaryo/manifest.m3u8
+
+#EXTINF:-1 tvg-id="tv5.ph" tvg-name="TV5 HD" group-title="Philippines",TV5 HD
+https://stream.honortv.a0001.net/tv5hd/manifest.m3u8
+
+#EXTINF:-1 tvg-id="a2z.ph" tvg-name="A2Z Channel 11" group-title="Philippines",A2Z
+https://stream.honortv.a0001.net/a2z/manifest.m3u8
+
+#EXTINF:-1 tvg-id="ibc13.ph" tvg-name="IBC 13" group-title="Philippines",IBC 13
+https://stream.honortv.a0001.net/ibc/manifest.m3u8
+
+#EXTINF:-1 tvg-id="untv.ph" tvg-name="UNTV" group-title="Philippines",UNTV
+https://stream.honortv.a0001.net/untv/manifest.m3u8
+
+#EXTINF:-1 tvg-id="ptv4.ph" tvg-name="PTV 4" group-title="Philippines",PTV 4
+https://stream.honortv.a0001.net/ptv4/manifest.m3u8
+
+#EXTINF:-1 tvg-id="dzrh.ph" tvg-name="DZRH TV" group-title="Philippines",DZRH TV
+https://stream.honortv.a0001.net/dzrhtv/manifest.m3u8
+
+#EXTINF:-1 tvg-id="knowledge.ph" tvg-name="Knowledge Channel" group-title="Philippines",Knowledge Channel
+https://stream.honortv.a0001.net/knowledge/manifest.m3u8
+
+#EXTINF:-1 tvg-id="aliw23.ph" tvg-name="Aliw Channel 23" group-title="Philippines",Aliw Channel 23
+https://stream.honortv.a0001.net/aliw23/manifest.m3u8
+
+#EXTINF:-1 tvg-id="cltv36.ph" tvg-name="CLTV 36" group-title="Philippines",CLTV 36
+https://stream.honortv.a0001.net/cltv36/manifest.m3u8
+
+#EXTINF:-1 tvg-id="spotlight.ph" tvg-name="Spotlight TV" group-title="Philippines",Spotlight TV
+https://stream.honortv.a0001.net/spotlight/manifest.m3u8
+
+#EXTINF:-1 tvg-id="rjtv.ph" tvg-name="RJTV" group-title="Philippines",RJTV
+https://stream.honortv.a0001.net/rjtv/manifest.m3u8
+
+#EXTINF:-1 tvg-id="rjtv29.ph" tvg-name="RJTV 29" group-title="Philippines",RJTV 29
+https://stream.honortv.a0001.net/rjtv29/manifest.m3u8
+
+#EXTINF:-1 tvg-id="onemedia.ph" tvg-name="One Media" group-title="Philippines",One Media
+https://stream.honortv.a0001.net/onemedia/manifest.m3u8
+
+#EXTINF:-1 tvg-id="lachtv.ph" tvg-name="Lachtv" group-title="Philippines",Lachtv
+https://stream.honortv.a0001.net/lachtv/manifest.m3u8
+
+#EXTINF:-1 tvg-id="oneph.ph" tvg-name="One PH" group-title="Philippines",One PH
+https://stream.honortv.a0001.net/oneph/manifest.m3u8
+
+#EXTINF:-1 tvg-id="onenews.ph" tvg-name="One News" group-title="Philippines",One News
+https://stream.honortv.a0001.net/onenews/manifest.m3u8
+
+#EXTINF:-1 tvg-id="vivacinema.ph" tvg-name="Viva Cinema" group-title="Philippines",Viva Cinema
+https://stream.honortv.a0001.net/vivacinema/manifest.m3u8
+
+#EXTINF:-1 tvg-id="pbo.ph" tvg-name="Pinoy Box Office" group-title="Philippines",PBO
+https://stream.honortv.a0001.net/pbo/manifest.m3u8
+
+#EXTINF:-1 tvg-id="star1.ph" tvg-name="Star 1" group-title="Philippines",Star 1
+https://stream.honortv.a0001.net/star1/manifest.m3u8
+
+#EXTINF:-1 tvg-id="cinemaworld.ph" tvg-name="CinemaWorld" group-title="Philippines",CinemaWorld
+https://stream.honortv.a0001.net/cinemaworld/manifest.m3u8
