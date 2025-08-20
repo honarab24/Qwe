@@ -4,16 +4,16 @@
 https://stream.honortv.a0001.net/gma7/manifest.m3u8
 
 #EXTINF:-1 tvg-id="cinemoph.ph" tvg-name="Cinemó" group-title="Philippines",Cinemó
-https://stream.honortv.a0001.net/cinemoph/manifest.m3u8
+https://stream.honortv.a0001.net/cinemo_ph/manifest.m3u8
 
 #EXTINF:-1 tvg-id="kapamilyachannel.ph" tvg-name="Kapamilya Channel HD" group-title="Philippines",Kapamilya Channel HD
-https://stream.honortv.a0001.net/kapamilyachannelHD/manifest.m3u8
+https://stream.honortv.a0001.net/kapamilyachannelhd/manifest.m3u8
 
 #EXTINF:-1 tvg-id="gtv.ph" tvg-name="GTV" group-title="Philippines",GTV
 https://stream.honortv.a0001.net/gtv/manifest.m3u8
 
 #EXTINF:-1 tvg-id="cinemaone.ph" tvg-name="Cinema One" group-title="Philippines",Cinema One
-https://stream.honortv.a0001.net/cinemaoneph/manifest.m3u8
+https://stream.honortv.a0001.net/cinemaone_ph/manifest.m3u8
 
 #EXTINF:-1 tvg-id="alltv.ph" tvg-name="AllTV" group-title="Philippines",AllTV
 https://stream.honortv.a0001.net/alltv2/manifest.m3u8
