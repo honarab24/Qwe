@@ -1,0 +1,66 @@
+<?php
+ // use require for more security...
+include('lock.php'); 
+?></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+<title>HONOR TV</title>
+<script disable-devtool-auto src='disable-devtool@latest">https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+<script src="pro-tect.js"></script>
+ <style>
+
+SetEnvIfNoCase User-Agent "Mozilla/5.0" bad_user
+Deny from env-bad_user   
+
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+function ctrlShiftKey(e, keyCode) {
+    return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+    }
+document.onkeydown = (e) => {
+    if (
+        e.keyCode === 123 ||
+        ctrlShiftKey(e, 'I') ||
+        ctrlShiftKey(e, 'J') ||
+        ctrlShiftKey(e, 'C') ||
+        (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+        )
+        return false;
+    }
+document.onkeydown = function(e) {
+    if(e.keyCode == 123) {
+     return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+     return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+     return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+     return false;
+    }
+
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
+     return false;
+    }      
+}
+</style>
+</head>
+<body>
+<script>
+
+
+ 
+#EXTM3U url-tvg="https://honortv-stream.netlify.app/cg1_epg.xml, https://honortv-stream.netlify.app/cg2_epg.xml.gz" vod_library="https://json.link/V9uF1wdElk.json" refresh="3600" billed-msg="WELLCOME TO HONOR TV - ENJOY WATCHING " 
+
+
+
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=0028c93f4358213b52220898b962385:8ae6063167228e350dd132d4a1573102
+#EXTINF:-1 tvg-id="wwenetwhd" tvg-name="WWE Network" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmCzZ_jw5AIF4plnIyrBj8SsPQUoAwQn8OsxgLxg8KfIL7AnmTd1zIuI5d&s=10" group-title="🇵🇭 PINOY", &VIP PLAYLIST AVAILABLE SUBSCRIPTION
+https://ia800907.us.archive.org/27/items/VIPPLAYLIST/VIPPLAYLIST.mp4
