@@ -30,7 +30,7 @@ app.get('/extract', async (req, res) => {
   try {
     const response = await fetch(targetUrl, {
       headers: {
-        'User-Agent': 'OTT Navigator/1.7.3.1 (Linux;Android 13; 1jnb5cf)'
+        'User-Agent': 'OTT Navigator/1.7.3.2 (Linux;Android 13; 15ntz5c)'
       },
       timeout: 10000
     });
