@@ -1,14 +1,16 @@
 {
   "name": "ott-m3u-extractor",
   "version": "1.0.0",
-  "description": "OTT Navigator M3U Extractor",
-  "main": "server.js",
+  "description": "OTT Navigator style M3U Extractor & Proxy",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "node-fetch": "^2.6.9"
-  }
+    "express": "^4.19.2",
+    "node-fetch": "^2.6.7",
+    "cors": "^2.8.5"
+  },
+  "author": "Your Name",
+  "license": "MIT"
 }
