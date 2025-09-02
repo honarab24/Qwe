@@ -1,4 +1,3 @@
-
 const express = require('express');
 const fetch = require('node-fetch');
 const cors = require('cors');
@@ -30,7 +29,7 @@ app.get('/extract', async (req, res) => {
   try {
     const response = await fetch(targetUrl, {
       headers: {
-        'User-Agent': 'OTT Navigator/1.7.3.2 (Linux;Android 13; 15ntz5c)'
+        'User-Agent': 'OTT Navigator/1.7.2.2 (Linux;Android 13; en; 1t68q56)'
       },
       timeout: 10000
     });
