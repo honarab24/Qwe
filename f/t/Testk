@@ -1,5 +1,13 @@
 #EXTM3U
 
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6e/NBA_League_Pass.png" group-title="🏀 NBA LEAGUE PASS", Oklahoma City Thunder vs Charlotte Hornets 5:00am
+#EXTVLCOPT:http-origin=https://mlbwebcast.com/
+#EXTVLCOPT:http-referrer=https://mlbwebcast.com/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Wayland like X11; Linux; rv:134.0) Gecko/20222319 Firefox/134.0
+https://gate.pixelpanel.online/hdstream/embed/554.m3u8
+
+
+
 #EXTINF:-1 tvg-id="ABCAustralia" tvg-name="ABC Australia" tvg-logo="",ABC Australia
 https://hls.mskycdn.online/tv/abcaustralia/index.m3u8
 
