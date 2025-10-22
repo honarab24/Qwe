@@ -1,4 +1,16 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo="https://frontofficesports.com/wp-content/uploads/2018/03/48ccb3b763a14cbaa90c60a3234340e8.jpg" group-title="🏀 NBA LEAGUE PASS", NBA🏀- Miami Heat vs Orlando Magic 7:00am
+#EXTVLCOPT:http-origin=https://embedsports.top
+#EXTVLCOPT:http-referrer=https://embedsports.top/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:139.0) Gecko/20100101 Firefox/139.0
+https://mainstreams.pro/hls/hfsdqtaxvb67.m3u8?st=V1M6xyEGt898LZGF-L8SJofbvlXl8i93l4cN1SRJl3Y&e=1761183272
+
+#EXTINF:-1 tvg-logo="https://frontofficesports.com/wp-content/uploads/2018/03/48ccb3b763a14cbaa90c60a3234340e8.jpg" group-title="🏀 NBA LEAGUE PASS", NBA🏀- Miami Heat vs Orlando Magic 7:00am
+#EXTVLCOPT:http-origin=https://embedsports.top
+#EXTVLCOPT:http-referrer=https://embedsports.top/
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:139.0) Gecko/20100101 Firefox/139.0
+https://lb10.strmd.top/secure/rvPXPUDcSTtaeYfcMBggulNCSaMEkjau/alpha/stream/orlando-magic/1/playlist.m3u8
+
 #EXTINF:-1 tvg-id="" tvg-logo="https://img1.pnghut.com/25/24/21/CZB9D1qyfu/news-broadcasting-red-symbol-sphere-philippines.jpg" group-title="🇵🇭 PINOY", jeepney TV
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
