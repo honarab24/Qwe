@@ -3,7 +3,7 @@
 
 #EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6e/NBA_League_Pass.png" group-title="🏀 NBA LEAGUE PASS", Sky Sports Main Event
 #EXTVLCOPT:http-origin=https://eu.mydomstream.org
-#EXTVLCOPT:http-referrer=https://eu.mydomstream.org/
+#EXTVLCOPT:http-referrer=https://eu.mydomstream.org/trial?u=skymaineventuk&cdn=eu
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Wayland like X11; Linux; rv:134.0) Gecko/20222319 Firefox/134.0
 https://eu.mydomstream.org/live/skymaineventuk/chunks.m3u8
 
