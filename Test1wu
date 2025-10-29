@@ -1,10 +1,11 @@
 #EXTM3U
 
 
-#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6e/NBA_League_Pass.png" group-title="🏀 NBA LEAGUE PASS", Sky Sports Main Event
-#EXTVLCOPT:http-origin=https://eu.mydomstream.org
-#EXTVLCOPT:http-referrer=https://eu.mydomstream.org/trial?u=skymaineventuk&cdn=eu
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Wayland like X11; Linux; rv:134.0) Gecko/20222319 Firefox/134.0
+#EXTM3U
+#EXTINF:-1 tvg-id="skymaineventuk" tvg-name="Sky Main Event UK" tvg-logo="https://upload.wikimedia.org/wikipedia/en/7/7b/Sky_Sports_Main_Event.png" group-title="Sports",Sky Main Event UK
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:139.0) Gecko/20100101 Firefox/139.0
+#EXTVLCOPT:http-referrer=https://eu.mydomstream.org/trial?u=nflnetwork&cdn=eu
+#EXTVLCOPT:http-header-fields=Authorization=Bearer%20eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZG4tYXV0aCIsImF1ZCI6ImNkbi1rZXlzIiwic3ViIjoiMzIzNzQzMzcwMSIsImNpZCI6Im5mbG5ldHdvcmsiLCJ0dyI6MTc2MTcyNjY2MiwiaXAiOiIxMC4wLjAuMiIsIm5iZiI6MTc2MTcyNjY1NywiZXhwIjoxNzYxNzI2NzUyLCJ1YW0iOiI2MjdhYzhmZTVhODZhM2EyZTc2NDFhZDJkNzE4MjIzYSIsImp0aSI6ImEzZTZhYjg2ZDc4ZmY5YTEiLCJ0eXBlIjoicGxheWxpc3QifQ.LUgBQ8LA35ECw38fuSP0hZfhlNjxjlA9UIzu7KOe-Do
 https://eu.mydomstream.org/live/skymaineventuk/chunks.m3u8
 
 #EXTINF:-1 tvg-logo="https://frontofficesports.com/wp-content/uploads/2018/03/48ccb3b763a14cbaa90c60a3234340e8.jpg" group-title="🏀 NBA LEAGUE PASS", NBA🏀- Chicago Bulls vs Orlando Magic 7:00am
