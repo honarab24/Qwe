@@ -1,5 +1,24 @@
 #EXTM3U
 
+============== NEW MOVIES ADDED ===============
+
+#EXTM3U
+
+
+#EXTINF:-1 tvg-id="tv1" tvg-name="First" group-title="🎬 NEW MOVIES ADDED [VOD]" group-logo="" tvg-logo="https://get.perfecttv.net/first/harimaumerah.jpg", 943 Harimau Merah (2025)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=cdcbbd9ef8f95d04b6c74d7160e4934b:af594494af4d9738c8d69fd10ea3b85c
+https://get.perfecttv.net/720.mpd?username=vip_3klp0es8&password=wg3piwEs&channel=harimaumerah|authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDYxNjg2NzAsImlzcyI6IlZSIiwiZXhwIjoxNzQ2MjI1MDAwLCJ3bXZlciI6Mywid21pZGZtdCI6ImFzY2lpIiwid21pZHR5cCI6MSwid21rZXl2ZXIiOjMsIndtdG1pZHZlciI6NCwid21pZGxlbiI6NTEyLCJ3bW9waWQiOjMyLCJ3bWlkIjoiMWRlODIwNjEtOTg4NC00MTNjLTg1NmUtMWFmYTk0NTg2YTlhIiwiZmlsdGVyIjoiKHR5cGU9PVwidmlkZW9cIiYmRGlzcGxheUhlaWdodDw9NzIwKXx8KHR5cGU9PVwiYXVkaW9cIiYmZm91ckNDIT1cImFjLTNcIil8fCh0eXBlIT1cInZpZGVvXCImJnR5cGUhPVwiYXVkaW9cIikiLCJwYXR0ZXJuIjoiOWMwYzg5YTVjNDI0MTU0ZjYxY2ViZGFmN2YwOWI3ODgtMzNjYjE1NTExOWIxN2ExMDBiOWYtMyJ9.eYu4aIjiBFUrX13QE7lB2z7qdRPsAtCsjvkqUsJS9TQ
+
+#EXTINF:-1 tvg-id="tv1" tvg-name="First" group-title="🎬 NEW MOVIES ADDED [VOD]" group-logo="" tvg-logo="https://get.perfecttv.net/first/sonic3.jpg", 944 Sonic 3 (2025)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=66be087fe18f9b5896425003a5218910:b696e138de020de1a172f3c25fd5ee59
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (iPhone17,5; CPU iPhone OS 18_3_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 FireKeepers/1.7.0
+https://vodejitp-asset-playback-b.astro.com.my/v4/default/cmaf-dash-wv/vode/2d8a9ff7-63fe-5439-b5ec-dd5f470abc64/default_dash.mpd
 
 #EXTINF:-1 tvg-id="" tvg-name="" group-title="🇵🇭 PHILIPPINES CHANNEL" tvg-logo="https://i0.wp.com/bingoplus.com/blog/wp-content/uploads/2024/12/About-Usbingoplus-scaled.webp?fit=1920%2C1044&ssl=1",BINGO PLUS
 #EXTVLCOPT:http-origin=https://bingoplus.com
