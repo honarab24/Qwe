@@ -3,8 +3,10 @@
 ============== NEW MOVIES ADDED ===============
 
 #EXTM3U
-#EXTM3U
-#EXTM3U
+#KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
+#KODIPROP:inputstream.adaptive.license_key=31363231383438333031323033393138:38694e34324d543478316b7455753437
+#EXTINF:-1 tvg-id="gma7ph2" tvg-name="GMA 7 (CON02)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL", GMA 7 (s2)
+https://mc-nfwz0ez9k2.bunny.run/gma/dopamine/manifest.mpd
 #KODIPROP:inputstreamaddon=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=dash
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
