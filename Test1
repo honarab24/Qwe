@@ -3,7 +3,13 @@
 ============== NEW MOVIES ADDED ===============
 
 #EXTM3U
+#EXTM3U
 
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=http://143.44.136.74:9443/widevine/?deviceId=02:00:00:00:00:00
+#EXTINF:-1 tvg-id="alltvph1" tvg-name="ALL TV #01" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZnlCSYPfWRWqlH4x7WvM1KeX-NRDnhkz_qQ&s" group-title="🇵🇭 PHILIPPINES CHANNEL",ALL TV (s1)
+http://161.49.17.2:6610/001/2/ch00000090990000001179/manifest.mpd?JITPDRMType=Widevine&virtualDomain=001.live_hls.zte.com
 
 #EXTINF:-1 tvg-id="tv1" tvg-name="First" group-title="🎬 NEW MOVIES ADDED [VOD]" group-logo="" tvg-logo="https://get.perfecttv.net/first/harimaumerah.jpg", 943 Harimau Merah (2025)
 #KODIPROP:inputstream=inputstream.adaptive
