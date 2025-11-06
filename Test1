@@ -29,7 +29,7 @@ http://161.49.17.2:6610/001/2/ch00000090990000001093/manifest.mpd?JITPDRMType=Wi
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=http://143.44.136.74:9443/widevine/?deviceId=02:00:00:00:00:00
 #EXTINF:-1 tvg-id="gma7ph1" tvg-name="GMA 7 (CON01)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL",GMA 7 (s00)
-http://161.49.17.2:6610/001/2/ch00000090990000001093/manifest.mpd?JITPDRMType=Widevine&JITPTrackType=23&virtualDomain=001.live_hls.zte.com&ispcode=55&ztecid=ch00000090990000001093&m4s_min=1&isjitp=0
+http://161.49.17.2:6610/001/2/ch00000090990000001093/manifest.mpd?JITPDRMType=Widevine&JITPTrackType=23&virtualDomain=001.live_hls.zte.com&ispcode=55&ztecid=ch00000090990000001093&m4s_min=1
 
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=http://143.44.136.74:9443/widevine/?deviceId=02:00:00:00:00:00
