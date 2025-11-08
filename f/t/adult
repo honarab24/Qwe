@@ -1,0 +1,56 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="hisi_babes" tvg-name="HISI Babes" group-title="Adult",HISI Babes
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash2.antik.sk/stream/hisi_babes/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_desire" tvg-name="HISI Desire" group-title="Adult",HISI Desire
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash3.antik.sk/stream/hisi_desire/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_true_amateurs" tvg-name="HISI True Amateurs" group-title="Adult",HISI True Amateurs
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash4.antik.sk/stream/hisi_true_amateurs/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_bang_u" tvg-name="HISI Bang U" group-title="Adult",HISI Bang U
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash2.antik.sk/stream/hisi_bang_u/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_dorcel" tvg-name="HISI Dorcel" group-title="Adult",HISI Dorcel
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash4.antik.sk/stream/hisi_dorcel/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_dorcel_xxx" tvg-name="HISI Dorcel XXX" group-title="Adult",HISI Dorcel XXX
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash2.antik.sk/stream/hisi_dorcel_xxx/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_leo_tv" tvg-name="HISI Leo TV" group-title="Adult",HISI Leo TV
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash3.antik.sk/stream/hisi_leo_tv/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_extasy" tvg-name="HISI Extasy" group-title="Adult",HISI Extasy
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash4.antik.sk/stream/hisi_extasy/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_leo_gold" tvg-name="HISI Leo Gold" group-title="Adult",HISI Leo Gold
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash2.antik.sk/stream/hisi_leo_gold/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_passion_xxx" tvg-name="HISI Passion XXX" group-title="Adult",HISI Passion XXX
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash3.antik.sk/stream/hisi_passion_xxx/playlist_cbcs.mpd
+
+#EXTINF:-1 tvg-id="hisi_dusk" tvg-name="HISI Dusk" group-title="Adult",HISI Dusk
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"4b80724d0ef86bcb2c21f7999d67739d","kid":"11223344556677889900112233445566"}],"type":"clearkey"}
+https://dash4.antik.sk/stream/hisi_dusk/playlist_cbcs.mpd
