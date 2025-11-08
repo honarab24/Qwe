@@ -3,6 +3,10 @@
 ============== NEW MOVIES ADDED ===============
 
 #EXTM3U
+#EXTINF:-1 tvg-id="gma7ph1" tvg-name="GMA 7 (CON01)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL",GMA test linkp0
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=http://143.44.136.74:9443/widevine/?deviceId=02:00:00:00:00:00
+http://143.44.136.67:6060/001/2/ch00000090990000001143/manifest.mpd?JITPDRMType=Widevine&virtualDomain=001.live_hls.zte.com&m4s_min=1&NeedJITP=1&isjitp=1&IASHttpSessionId=202511080945123456789
 
 #EXTINF:-1 group-title="🇵🇭 PHILIPPINES CHANNEL" tvg-logo="https://logo.iptveditor.com/bbcworldnews.png" group-title="",PRIME VIDEO
 #KODIPROP:inputstream.adaptive.manifest_type=dash
