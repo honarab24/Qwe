@@ -2,6 +2,14 @@
 
 ============== NEW MOVIES ADDED ===============
 
+
+
+#EXTINF:-1 tvg-id="snworld" tvg-name="SN World" tvg-logo="" group-title="Live",SN World
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:139.0) Gecko/20100101 Firefox/139.0
+#EXTVLCOPT:http-header=Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjZG4tYXV0aCIsImF1ZCI6ImNkbi1rZXlzIiwic3ViIjoiZ3Vlc3RfOTQzNDM2MzA3MiIsImNpZCI6InNud29ybGQiLCJ0dyI6MTc2MjY5MjU5NiwiaXAiOiIxMTIuMjA1LjE1MS4xMDciLCJuYmYiOjE3NjI2OTI1OTEsImV4cCI6MTc2MjY5MjY4NiwidWFtIjoiNjI3YWM4ZmU1YTg2YTNhMmU3NjQxYWQyZDcxODIyM2EiLCJqdGkiOiJmNTI1M2RhYzU0NTdhOWQyIiwidHlwZSI6InBsYXlsaXN0In0.qRwAKjU9Wc-f6Wp88MnJu4MzQKvjbma-Kvip_T0-6JU
+#EXTVLCOPT:http-referrer=https://eu.mydomstream.org/trial?u=snworld&cdn=eu&sport_uuid=8b84f073&channels_count=2
+https://eu.mydomstream.org/live/snworld/chunks.m3u8
+
 #EXTM3U
 #EXTINF:-1 tvg-id="gma7ph1" tvg-name="GMA 7 (CON01)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL",GMA 7 (CON01)
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
