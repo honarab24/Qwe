@@ -4,10 +4,10 @@
 
 
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-name="PBB Main All Access" tvg-logo="https://i.imgur.com/RLdSxwo.png" group-title="Local",PBB Main All Access
+#EXTINF:-1 tvg-id="" tvg-name="PBB Main All Access" tvg-logo="https://i.imgur.com/RLdSxwo.png" group-title="Local",Sky Sports Tennis
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
-#KODIPROP:inputstream.adaptive.license_key=8438e8495659425585a09749cd6bc39a:9d92b12db092fe6bdf2207ef7a2a9e65
-https://abslive.akamaized.net/dash/live/2112806/pbbmain/manifest.mpd
+#KODIPROP:inputstream.adaptive.license_key=8a7c8437ab14cb75f8522fd0d4b7f2f8:dc9be1750410e91be85f96ef0efdacd7
+https://abe4mdzaaaaaaaampzanwc57oxzti.otte.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/n7k8iy6fcq/out/v1/b58874d47be74695806ce7b9e58fe48b/cenc.mpd
 
 #EXTINF:-1 tvg-id="snworld" tvg-name="SN World" tvg-logo="" group-title="Live",SN World
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:139.0) Gecko/20100101 Firefox/139.0
