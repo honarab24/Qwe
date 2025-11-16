@@ -20,6 +20,46 @@ https://abe4mdzaaaaaaaampzanwc57oxzti.otte.live.cf.ww.aiv-cdn.net/lhr-nitro/live
 https://eu.mydomstream.org/live/snworld/chunks.m3u8
 
 #EXTM3U
+
+#EXTINF:-1 tvg-logo="https://58-64-52-73-rewriter.ais-vidnt.com/ais/play/origin/LIVE/channelicon/R_0148.png" group-title="ช่องบันเทิง",HBO HD
+#EXTVLCOPT:input-slave=keyfile:https://cnt1-streamer9.cdn.3bbtv.com:8443/3bb/live/103/103.mpd
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=9c5735afb4fd402580360aed8364469c:128d55d9ac2b47ad85f86b5d08320179
+https://cnt1-streamer9.cdn.3bbtv.com:8443/3bb/live/103/103.mpd
+
+#EXTINF:-1 tvg-logo="https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/0012.png" group-title="IPTV 3BB",ONE31 HD(3BB)
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=6529c8cd99db4489bd237f616f37124b:b9d299ba9ea94fd2ac4a77e8966dd91e
+https://cri-streamer3.cdn.3bbtv.com:8443/3bb/live/31/31.mpd
+
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/akkradet/IPTV-THAI/master/logo/T-SPorts_7_Final.png" group-title="IPTV 3BB",T Sports 7(3BB)
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=6187523f92b9475bb5b192f70cef1342:5119311f482144d58dacabc5bc1fa4ba
+https://cri-streamer3.cdn.3bbtv.com:8443/3bb/live/7/7.mpd
+
+#EXTINF:-1 tvg-logo="https://img5.pic.in.th/file/secure-sv1/Asian-Hits.png" group-title="IPTV 3BB",Asian-Hits(3BB)
+#EXTVLCOPT:user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=dac6cbd9d17a451bb76386f52469e0e9:2e2ac52cadf843459915eaa1a9b95e48
+https://cri-streamer3.cdn.3bbtv.com:8443/3bb/live/101/101.mpd
+
+#EXTINF:-1 tvg-logo="https://dookeela.live/uploads/1703786799.png" group-title="IPTV 3BB",Cinemax(3BB)
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=f48caba466394e93b50780f21798787a:9a074a10db4342e7937076b3e52f6029
+https://cri-streamer3.cdn.3bbtv.com:8443/3bb/live/107/107.mpd
+
+#EXTINF:-1 tvg-logo="https://media-mvtv-app.imgix.net/uploads/channel/174_y_BdCq6Xr7og2SHhc3i5KbYxetAEf0nMly.png" group-title="ช่องรายการเด็ก",BOOM ANIME
+https://edge2a.v2h-cdn.com//boom_anime/boom_anime.stream/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://49-231-37-237-rewriter.ais-vidnt.com/ais/play/origin/LIVE/channelicon/Boomerang_2.png" group-title="ช่องรายการเด็ก",Boomerang
+https://edge2a.v2h-cdn.com/boomerang/boomerang.stream/playlist.m3u8
+
+
+
+
+
+
+#EXTM3U
 #EXTINF:-1 tvg-id="gma7ph1" tvg-name="GMA 7 (CON01)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL",GMA 7 (CON01)
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
 #KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"38694e34324d543478316b7455753437","kid":"31363231383438333031323033393138"}],"type":"temporary"}
