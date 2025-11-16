@@ -1,7 +1,17 @@
 #EXTM3U
 
 ============== NEW MOVIES ADDED ===============
+#EXTM3U
 
+#EXTINF:-1, GMA Life TV
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=fac2e4670c8a4c29b4551c18eb8f38cc:e2094408be4c3efda15a2389eb384c70
+https://channel.singteltvgo.com/wp/liveorigincluster.poster.iptv.singnet.public/5689/vxfmt=dp/manifest.mpd?device_profile=DASH_OTT_ENC_CENC_AXINOM
+
+#EXTINF:-1, GMA News TV
+#EXTVLCOPT:dash-override=true
+#EXTVLCOPT:clearkey=f3307bcf7a7c4ba2b414ce2dd0678d29:371e1d5e4f8233acec9cb80c27ec2a15
+https://channel.singteltvgo.com/wp/liveorigincluster.poster.iptv.singnet.public/5690/vxfmt=dp/manifest.mpd?device_profile=DASH_OTT_ENC_CENC_AXINOM
 
 #EXTINF:-1 tvg-id="LOCAL.ph" tvg-logo="https://example.com/sports_logo.png" group-title="Local", RWS Muay Thai: 2025 Welterweight Title
 #KODIPROP:inputstream.adaptive.license_type=org.w3.clearkey
