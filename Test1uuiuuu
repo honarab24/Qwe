@@ -80,8 +80,7 @@ http://143.44.136.67:6060/001/2/ch00000090990000001093/manifest.mpd?JITPDRMType=
 #EXTINF:-1 tvg-id="gma7ph1" tvg-name="GMA 7 (CON01)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL",GMA ww
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=http://143.44.136.74:9443/widevine/?deviceId=02:00:00:00:00:00
-#EXTVLCOPT:http-user-agent=OTT APP
-https://conv.iptvplayer024.workers.dev/manifest.mpd
+http://xtream-ie.cc:80/live/Honortvph/Stream/5513?.mpd
 
 
 #EXTINF:-1 tvg-id="gma7ph1" tvg-name="GMA 7 (CON01)" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFZvR-WBx9by7ekFRW0YnNf7DBTUH4_MRzWQ&usqp=CAU" group-title="🇵🇭 PHILIPPINES CHANNEL",GMA test linkp0
