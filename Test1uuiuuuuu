@@ -1,7 +1,26 @@
 #EXTM3U
 
-============== NEW MOVIES ADDED ===============
-#EXTM3U
+#EXTINF:-1 tvg-id="beIN SPORTS 1.fr" tvg-logo="" group-title="FRENCH SPORTS",beIN Sports 1 France
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"LGPDhBuQwsvxFZadz3ERxQ","k":"tx3xGfme5xJ+d6U5jSWAHg"},{"kty":"oct","kid":"8e9ytdWdsgMkNR57W9BNgA","k":"gEY5W13F1WWxaRuoe8SXuQ"},{"kty":"oct","kid":"AxzO7igq5WxWuYReDwM+0A","k":"im9fSEhkxYE2mYwDEyD09g"},{"kty":"oct","kid":"xtJWXPWGhrVJSEucDWPTuA","k":"f048YK7p2qX2K4K98YEL0w"},{"kty":"oct","kid":"I9ioEUXoLWH18zkkEigFOQ","k":"Wb/7P1V/7GUD/m92poiBog"}]}
+https://api-proxad.dc2.oqee.net/playlist/v1/live/966/1/live.mpd
+
+#EXTINF:-1 tvg-id="beIN SPORTS 2.fr" tvg-logo="" group-title="FRENCH SPORTS",beIN Sports 2 France
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"Ssudj4RaMVolmhKGe2eS5A","k":"nJgaml/4+5gUnWAhuWI6sw"},{"kty":"oct","kid":"LrsNNZsjhyVs0gxUevMq9w","k":"+udRObNMfJuPnNQHHYDBng"},{"kty":"oct","kid":"bfof/0SBOSIGmniwlD7LaQ","k":"CKf8e0d4lgszyA4m00E9mw"},{"kty":"oct","kid":"vm0egZi/k1JwslM9Vr0c/Q","k":"uIP7+bZSuYxTDGS8mofBUg"},{"kty":"oct","kid":"Y8BEn3INpLfVF59DcHbq3w","k":"5hFONrHRo5ADHlgtCz86Nw"}]}
+https://api-proxad.dc2.oqee.net/playlist/v1/live/970/1/live.mpd
+
+#EXTINF:-1 tvg-id="beIN SPORTS 3.fr" tvg-logo="" group-title="FRENCH SPORTS",beIN Sports 3 France
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"RTG5PkirnqApehdsUVz/FA","k":"RzwijxpXn85ucQ4ksi5GHw"},{"kty":"oct","kid":"N6KHTpHu3LqVXO6t5VlOpg","k":"Kn/usPRxe92BL6qdqogBLQ"},{"kty":"oct","kid":"krqSlZmIs9zGg8hs5UDjog","k":"pLqHlWcUanlM4qKLkCFwqA"},{"kty":"oct","kid":"sNpgK32OTeaae8OySz1wvA","k":"twT3SwOwvmqRa2cKXaXu+Q"},{"kty":"oct","kid":"qs4I+CsohuJ34Ss1ZcfHRQ","k":"5KwVUJUn1fOxGxfQM1T/sA"}]}
+https://api-proxad.dc2.oqee.net/playlist/v1/live/971/1/live.mpd
+
+
+#EXTINF:-1 tvg-id="beIN SPORTS MAX 4.fr" tvg-logo="" group-title="FRENCH SPORTS",beIN Sports Max 4 France
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","kid":"m8E22NbIYLYuCtrAA+TT2Q","k":"rlyanlBKT+JzdgyA5/4erg"},{"kty":"oct","kid":"Aq2Nj/2AtQVneW5pS3opJw","k":"B86CeVN+0m/oMbU0OqVZaQ"},{"kty":"oct","kid":"0RQPC4dyMpf8Gjgg2YlTfw","k":"N8eLX7vZcha0gT4TWrLB6g"},{"kty":"oct","kid":"ttC2IXxwsPcFACoHB3GwhA","k":"dGwC0eaIT+LkQRYkugVVKA"}]}
+https://api-proxad.dc2.oqee.net/playlist/v1/live/972/1/live.mpd
+
 
 #EXTM3U
 #EXTINF:-1 group-title="FOX ONE" tvg-id="FOX ONE", tvg-logo="https://i.postimg.cc/XpSD2cdh/FOX-t-290x163.webp", FOX ONE
